@@ -1,7 +1,5 @@
-/* Import de la police */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&display=swap');
 
-/* Réinitialisation des marges et polices */
 * {
     margin: 0;
     padding: 0;
@@ -9,28 +7,23 @@
     font-family: "Montserrat", sans-serif;
 }
 
-/* Styles de base du corps */
 body {
     background-color: #ffffff;
 }
 
-/* Styles pour liens */
 a {
     text-decoration: none;
     color: inherit;
 }
 
-/* Titres */
 h1, h2 {
     font-weight: 900;
 }
 
-/* P pour contenu */
-p, .card p {
+p {
     font-weight: 400;
 }
 
-/* Header */
 header {
     background-color: #474747;
     height: 50px;
@@ -38,7 +31,6 @@ header {
     margin: 0 auto;
 }
 
-/* Section principale (hero) */
 .hero {
     display: flex;
     justify-content: space-between;
@@ -71,7 +63,6 @@ header {
     background-color: #eaeaea;
 }
 
-/* Contenu des cartes */
 .content {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -81,13 +72,11 @@ header {
     margin: 0 auto;
 }
 
-/* Styles des cartes */
 .card-container {
     width: 100%;
     height: 300px;
     position: relative;
-    transform-style: preserve-3d;
-    perspective: none; /* Désactivation de la perspective */
+    perspective: none;
 }
 
 .card {
@@ -95,21 +84,20 @@ header {
     height: 100%;
     position: relative;
     transition: transform 0.8s;
-    transform-style: preserve-3d; /* Assure que les deux faces sont superposées */
+    transform-style: preserve-3d;
 }
 
 .card.flipped {
-    transform: rotateY(180deg); /* Bascule de 180 degrés pour afficher le verso */
+    transform: rotateY(180deg);
 }
 
-/* Faces avant et arrière */
 .card-front, .card-back {
     position: absolute;
     width: 100%;
     height: 100%;
     top: 0;
     left: 0;
-    backface-visibility: hidden; /* Cache la face arrière lorsqu'elle est retournée */
+    backface-visibility: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -118,7 +106,6 @@ header {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Face avant (recto) */
 .card-front {
     background-color: white;
     padding: 1.5rem;
@@ -132,30 +119,10 @@ header {
     border-radius: 5px;
 }
 
-.card-front h2 {
-    font-size: 1.4rem;
-    color: #333;
-}
-
-.card-front p {
-    font-size: 1rem;
-    color: #666;
-    margin-bottom: 1rem;
-}
-
-.label {
-    font-size: 0.9rem;
-    padding: 0.25rem 0.5rem;
-    border-radius: 5px;
-    color: white;
-    background-color: #007bff;
-}
-
-/* Face arrière (verso) */
 .card-back {
     background-color: red;
     color: white;
-    transform: rotateY(180deg); /* Face arrière tournée de 180 degrés */
+    transform: rotateY(180deg);
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
@@ -173,7 +140,6 @@ header {
     margin-bottom: 1rem;
 }
 
-/* Boutons */
 button {
     padding: 0.5rem 1rem;
     border: none;
@@ -182,18 +148,12 @@ button {
     font-size: 1rem;
 }
 
-button.active {
-    background-color: #28a745;
-    color: white;
-}
-
 button.inactive {
     background-color: #999;
     cursor: not-allowed;
     color: white;
 }
 
-/* Responsive design */
 @media (max-width: 768px) {
     .content {
         grid-template-columns: 1fr;
