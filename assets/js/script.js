@@ -1,14 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
     const cards = document.querySelectorAll('.card-container');
-    const today = new Date().toISOString().split('T')[0]; // Format YYYY-MM-DD
+    const today = new Date(); // Utilisation de la date actuelle sans formatage
 
     cards.forEach(card => {
-        const cardDate = card.getAttribute('data-date');
-        
+        const cardDate = new Date(card.getAttribute('data-date')); // Création d'un objet Date
+
         if (cardDate < today) {
             // Si le jour est passé, afficher uniquement la face recto
             card.querySelector('.card-back').style.display = 'none';
-        } else if (cardDate === today) {
+        } else if (cardDate.toDateString() === today.toDateString()) {
             // Si c'est le jour J, afficher la face verso et gérer le flip
             card.querySelector('.card-back').style.display = 'flex';
             card.querySelector('.card-back button').onclick = () => flipCard(card.querySelector('.card'));
