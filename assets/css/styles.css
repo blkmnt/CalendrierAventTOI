@@ -1,3 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
+body {
+    background-color: #ffffff;
+}
+
+header {
+    background-color: #474747;
+    height: 50px;
+    padding: 2rem;
+}
+
+.hero {
+    display: flex;
+    justify-content: space-between;
+    padding: 4rem 2rem;
+    color: black;
+}
+
+.content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    padding: 2rem;
+}
+
 .card-container {
     perspective: 1000px;
 }
@@ -39,4 +72,17 @@
 /* Animation de flip */
 .card.flipped {
     transform: rotateY(180deg);
+}
+
+
+button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button.inactive {
+    background-color: gray;
+    cursor: not-allowed;
 }
