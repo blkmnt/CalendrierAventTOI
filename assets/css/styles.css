@@ -141,6 +141,11 @@ button {
     cursor: pointer;
 }
 
+button.inactive {
+    background-color: gray;
+    cursor: not-allowed;
+}
+
 @media (max-width: 768px) {
     .content {
         grid-template-columns: 1fr;
