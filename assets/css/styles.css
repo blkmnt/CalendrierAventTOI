@@ -249,16 +249,12 @@ footer {
     }
     h1, h1-mobile {
         font-weight: 700;
-        text-align: left;
         font-size: large;
         text-transform: uppercase;
     }
     
     .card-pastDay h1, .card-futureDay h1, .card-futureDay h1-mobile {
-        font-weight: 700;
         text-align: left;
-        font-size: large;
-        text-transform: uppercase;
     }
 
 @media (min-width: 769px) and (max-width: 1024px) {
