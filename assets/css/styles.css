@@ -8,8 +8,8 @@
 }
 
 body {
-    background-color: #ffffff;
-    color: #0E1116;
+    background-color: #E9E9EB;
+    color: #000000;
     padding: 50px 0 0 0;
 }
 
@@ -28,7 +28,7 @@ h1, h2, .card h2 {
 
 /* Header */
 header {
-    background-color: #0E1116;
+    background-color: #000000;
     height: 50px;
     width: 100%;
     padding: 0;
@@ -66,7 +66,6 @@ header {
 .hero {
     display: flex;
     justify-content: center;
-    padding: 4rem 2rem;
     max-width: 1200px;
     margin: 0 auto;
     color: black;
@@ -365,9 +364,6 @@ footer {
         grid-template-columns: 1fr;
         padding: 0rem 2rem 2rem 2rem;
     }
-    .hero {
-        padding: 2rem;
-    }    
     .hero-content {
         max-width: 100%;
     }
