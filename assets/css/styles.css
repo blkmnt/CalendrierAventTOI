@@ -22,7 +22,7 @@ p, .card p {
     font-weight: 400;
 }
 
-h1, h2, .card h2 {
+h1, h1-web, h1-mobile {
     font-weight: 900;
 }
 
