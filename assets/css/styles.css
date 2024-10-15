@@ -236,7 +236,7 @@ footer {
     .card-pastDay, .card-futureDay {
         flex-direction: row;
         justify-content: flex-start;
-        gap: 2rem;
+        gap: 1.5rem;
         align-items: center;
     }
     .card-pastDay-image-container {
