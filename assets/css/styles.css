@@ -141,17 +141,15 @@ header {
 
 .card-image-container {
     width: 100%;
-    height: 150px;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    margin: 2rem 0;
 }
 
 .card-pastDay-image-container img, .card-image-container img {
     width: 100%;
-    height: 150px;
+    height: 100px;
     object-fit: cover;
 }
 
