@@ -146,9 +146,10 @@ header {
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    margin: 2rem 0;
 }
 
-.card-pastDay-image-container, .card-image-container img {
+.card-pastDay-image-container img, .card-image-container img {
     width: 100%;
     height: 150px;
     object-fit: cover;
