@@ -231,6 +231,9 @@ footer {
     .hero-image {
         max-width: 100%;
     }
+    h1-mobile {
+        display:flex;
+    }
     h1-web {
         display:none;
     }
