@@ -26,6 +26,10 @@ h1, h1-web, h1-mobile {
     font-weight: 900;
 }
 
+h1-mobile {
+    display:none;
+}
+
 /* Header */
 header {
     background-color: #000000;
@@ -150,17 +154,6 @@ header {
     object-fit: cover;
 }
 
-.card h1 {
-    font-size: 1.4rem;
-    margin-bottom: 0.75rem;
-}
-
-.card p {
-    font-size: 1rem;
-    color: #000000;
-    margin-bottom: 2.5rem
-}
-
 .card-pastDay:hover, .card-today:hover, .card-futureDay:hover {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
@@ -180,14 +173,6 @@ header {
     border: none;
     outline: none;
     cursor: pointer;
-}
-
-.button:hover {
-    filter: brightness(90%);
-}
-
-.button-small {
-    width: fit-content;
 }
 
 .card-futureDay .button {
@@ -224,7 +209,6 @@ footer {
 }
 
 
-
 /* Responsive Design */
 @media (max-width: 768px) {
     .content {
@@ -237,11 +221,8 @@ footer {
     .hero-image {
         max-width: 100%;
     }
-    .hero h1 {
-        font-size: 2rem;
-    }
-    .hero p {
-        font-size: 0.75rem;
+    h1-web {
+        display:none;
     }
 }
 
