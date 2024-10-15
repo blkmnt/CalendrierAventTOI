@@ -80,13 +80,12 @@ header {
 }
 
 .hero-content {
-    max-width: 60%;
     justify-content: center;
     flex-direction: column;
 }
 
 .hero-image {
-    max-width: 600px;
+    max-width: 1000px;
 }
 
 /* Content Section */
