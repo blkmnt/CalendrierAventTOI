@@ -23,9 +23,10 @@ p, .card p {
     text-align: center;
 }
 
-h1, h1-web, h1-mobile {
+h1, h1-web {
     font-weight: 900;
     text-align: center;
+    font-size: x-large;
 }
 
 h1-mobile {
@@ -109,6 +110,10 @@ header {
 
 .card-pastDay {
     background-color: white;
+}
+
+.card-today h1, .card-futureDay h1-web, .card-futureDay h1-mobile {
+    color:#FFFFFF;
 }
 
 .card-today-red, .card-futureDay-red {
