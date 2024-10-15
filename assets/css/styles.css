@@ -242,12 +242,19 @@ footer {
     .card-pastDay-image-container {
         margin-bottom: 0rem;
     }
-    .card-pastDay-image-container img, .card-image-container img {
+    .card-pastDay-image-container img, .card-futureDay .card-image-container img {
         height: 50px;
         width: 50px;
         margin: 0.5rem;
     }
     h1, h1-mobile {
+        font-weight: 700;
+        text-align: left;
+        font-size: large;
+        text-transform: uppercase;
+    }
+    
+    .card-pastDay h1, .card-futureDay h1, .card-futureDay h1-mobile {
         font-weight: 700;
         text-align: left;
         font-size: large;
