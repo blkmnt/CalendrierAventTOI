@@ -130,7 +130,7 @@ header {
 .card-pastDay-image-container {
     width: 100%;
     height: 150px;
-    background-color: rgba(58, 134, 255, 0.3);
+    background: linear-gradient(45deg, #8D0013, #D10028);
     margin-bottom: 1rem;
     border-radius: calc(24px - 1rem);
     display: flex;
