@@ -24,9 +24,10 @@ p, .card p {
 }
 
 h1, h1-web {
-    font-weight: 900;
+    font-weight: 700;
     text-align: center;
     font-size: x-large;
+    text-transform: uppercase;
 }
 
 h1-mobile {
@@ -233,7 +234,26 @@ footer {
     h1-web {
         display:none;
     }
-}
+    .card-pastDay, .card-futureDay {
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 2rem;
+        align-items: center;
+    }
+    .card-pastDay-image-container {
+        margin-bottom: 0rem;
+    }
+    .card-pastDay-image-container img, .card-image-container img {
+        height: 50px;
+        width: 50px;
+        margin: 0.5rem;
+    }
+    h1, h1-mobile {
+        font-weight: 700;
+        text-align: left;
+        font-size: large;
+        text-transform: uppercase;
+    }
 
 @media (min-width: 769px) and (max-width: 1024px) {
     .content {
