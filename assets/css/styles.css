@@ -20,10 +20,12 @@ a {
 
 p, .card p {
     font-weight: 400;
+    display:none
 }
 
 h1, h2, .card h2 {
     font-weight: 900;
+    display:block
 }
 
 /* Header */
@@ -375,6 +377,16 @@ footer {
     }
     .hero p {
         font-size: 0.75rem;
+    }
+
+    .card p {
+        font-weight: 400;
+        display:block
+    }
+    
+    .card h2 {
+        font-weight: 900;
+        display:none
     }
 }
 
