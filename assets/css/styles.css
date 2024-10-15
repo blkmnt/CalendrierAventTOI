@@ -125,11 +125,11 @@ header {
 }
 
 .card-today-red, .card-futureDay-red {
-    background: linear-gradient(45deg, #D10028, #8D0013);
+    background: linear-gradient(45deg, #8D0013, #D10028);
 }
 
 .card-today-green, .card-futureDay-green {
-    background: linear-gradient(45deg, #0B9A7D, #004C38);
+    background: linear-gradient(45deg, #004C38, #0B9A7D);
 }
 
 .card-content {
@@ -185,16 +185,27 @@ header {
     cursor: pointer;
 }
 
+.card-today .button {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: #000000;
+}
+
+.card-today .button:hover {
+    background: linear-gradient(45deg, #CEA872, #E6C7A1);
+    color: #000000;
+}
+
 .card-futureDay .button {
     background-color: rgba(255, 255, 255, 0.3);
     color: #FFFFFF;
 }
 
-.card.inactive .button:hover {
+.card-futureDay .button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: #FFFFFF;
     filter: none;
     cursor: initial;
 }
-
 
 /* Footer */
 footer {
