@@ -227,35 +227,6 @@ footer {
     .hero-image {
         max-width: 100%;
     }
-    h1-mobile {
-        display:flex;
-    }
-    h1-web {
-        display:none;
-    }
-    .card-pastDay, .card-futureDay {
-        flex-direction: row;
-        justify-content: flex-start;
-        gap: 1.5rem;
-        align-items: center;
-    }
-    .card-pastDay-image-container {
-        margin-bottom: 0rem;
-    }
-    .card-pastDay-image-container img, .card-futureDay .card-image-container img {
-        height: 50px;
-        width: 50px;
-        margin: 0.5rem;
-    }
-    h1, h1-mobile {
-        font-weight: 700;
-        font-size: large;
-        text-transform: uppercase;
-    }
-    
-    .card-pastDay h1, .card-futureDay h1, .card-futureDay h1-mobile {
-        text-align: left;
-    }
 
 @media (min-width: 769px) and (max-width: 1024px) {
     .content {
