@@ -23,15 +23,11 @@ p, .card p {
     text-align: center;
 }
 
-h1, h1-web {
+h1 {
     font-weight: 700;
     text-align: center;
     font-size: x-large;
     text-transform: uppercase;
-}
-
-h1-mobile {
-    display:none;
 }
 
 /* Header */
@@ -91,7 +87,7 @@ header {
 /* Content Section */
 .content {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
     padding: 0rem 2rem 8rem 2rem;
     max-width: 1200px;
@@ -106,13 +102,16 @@ header {
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
+    align-items: center;
+    width: inherit;
+    gap: 1.5rem;
 }
 
 .card-pastDay {
     background-color: white;
 }
 
-.card-today h1, .card-futureDay h1-web, .card-futureDay h1-mobile {
+.card-today h1, .card-futureDay h1 {
     color:#FFFFFF;
 }
 
@@ -125,15 +124,7 @@ header {
 }
 
 .card-content {
-}
-
-.card-pastDay-image-container {
-    background: linear-gradient(45deg, #8D0013, #D10028);
-    border-radius: calc(24px - 1rem);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+    width: -webkit-fill-available;
 }
 
 .card-image-container {
@@ -141,12 +132,16 @@ header {
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    background: linear-gradient(45deg, #CEA872, #E6C7A1);
+    border-radius: 99px;
+    width: fit-content;
+    height: fit-content;
 }
 
 .card-pastDay-image-container img, .card-image-container img {
     height: 100px;
     object-fit: cover;
-    margin: 1rem;
+    margin: 1.5rem;
 }
 
 .card-pastDay:hover, .card-today:hover, .card-futureDay:hover {
