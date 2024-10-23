@@ -94,7 +94,7 @@ header {
     margin: 0 auto;
 }
 
-.card-pastDay, .card-today, .card-futureDay {
+.card {
     padding: 1.5rem;
     border-radius: 24px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -105,21 +105,18 @@ header {
     align-items: center;
     width: inherit;
     gap: 1.5rem;
-}
-
-.card-pastDay {
     background-color: white;
 }
 
-.card-today h1, .card-futureDay h1 {
+.card-red h1, .card-green h1 {
     color:#FFFFFF;
 }
 
-.card-today-red, .card-futureDay-red {
+.card-red {
     background: linear-gradient(45deg, #8D0013, #D10028);
 }
 
-.card-today-green, .card-futureDay-green {
+.card-green {
     background: linear-gradient(45deg, #004C38, #0B9A7D);
 }
 
@@ -138,13 +135,13 @@ header {
     height: fit-content;
 }
 
-.card-pastDay-image-container img, .card-image-container img {
+.card-image-container img {
     height: 100px;
     object-fit: cover;
     margin: 1.5rem;
 }
 
-.card-pastDay:hover, .card-today:hover, .card-futureDay:hover {
+.card:hover {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -165,12 +162,12 @@ header {
     cursor: pointer;
 }
 
-.card-today .button {
+.card .button {
     background-color: #FFFFFF;
     color: #000000;
 }
 
-.card-today .button:hover {
+.card-red .button:hover, .card-green .button:hover {
     background: linear-gradient(45deg, #CEA872, #E6C7A1);
     color: #000000;
 }
