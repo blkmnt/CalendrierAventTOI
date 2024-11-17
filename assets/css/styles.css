@@ -340,7 +340,7 @@ footer {
 }
 
 input:checked + .slider {
-    background: linear-gradient(45deg, #004C38, #0B9A7D);
+    background: linear-gradient(45deg, #CEA872, #E6C7A1);
 }
 
 input:checked + .slider:before {
