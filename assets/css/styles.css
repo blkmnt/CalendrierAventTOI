@@ -318,7 +318,7 @@ footer {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #000000;
+    background-color: #00000050;
     transition: .4s;
     border-radius: 99px;
 }
