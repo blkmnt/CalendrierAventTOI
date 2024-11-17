@@ -255,6 +255,27 @@ footer {
     }
 }
 
+.snowflake {
+    position: fixed;
+    top: -2rem;
+    font-size: 2rem;
+    opacity: 0.8;
+    animation-name: fall;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(100vh);
+    }
+}
+
 
 /* Responsive Design */
 @media (max-width: 768px) {
