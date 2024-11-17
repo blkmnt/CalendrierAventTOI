@@ -94,14 +94,19 @@ async function generateCards() {
 // Appeler la fonction pour générer les cartes
 generateCards();
 
-// Fonction openCard
+
+
+
+// Fonction openCard pour gérer l'ouverture des cartes
 function openCard(event) {
-    // Empêcher le comportement par défaut du bouton
-    event.preventDefault();
+    // Vérifie si un événement a été déclenché
+    if (event) {
+        event.preventDefault(); // Empêche le comportement par défaut (si nécessaire)
+    }
 
     // Récupérer la carte parente du bouton cliqué
     const card = event.target.closest('.cardToday');
-    if (!card) return; // Si aucun parent correspondant, on quitte
+    if (!card) return; // Si aucun parent correspondant, on quitte la fonction
 
     // Récupérer les éléments h2, p et button à l'intérieur de la carte
     const activityTitle = card.querySelector('h2');
@@ -125,4 +130,5 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', openCard);
     });
 });
+
 
