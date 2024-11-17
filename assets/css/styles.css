@@ -123,12 +123,23 @@ header {
     color: #0B9A7D;
 }
 
+.cardPast {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+
 .card-red h1, .card-green h1 {
     color:#FFFFFF;
 }
 
 .cardToday h2, .cardToday p {
     color:#FFFFFF;
+}
+
+.cardToday {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
 }
 
 .card-red {
