@@ -78,7 +78,7 @@ async function generateCards() {
                     </div>
                     <div class="card-content">
                         <h1>${formattedDate}</h1>
-                        <button class="button">Bientôt dispo</button>
+                        <button class="button">Non-disponible</button>
                     </div>
                 </div>
             `;
