@@ -166,7 +166,6 @@ header {
 
 .cardPast .button:hover {
     background-color: transparent;
-    color: #FFFFFF;
     filter: none;
     cursor: initial;
 }
