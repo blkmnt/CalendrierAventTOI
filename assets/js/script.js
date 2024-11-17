@@ -93,8 +93,7 @@ async function generateCards() {
 generateCards();
 
 
-// Fonction pour transformer la carte "Today" en "Past"
-function setupCardTransition() {
+function openCard() {
     // Sélectionner tous les boutons "Ouvrir" des cartes "Today"
     const openButtons = document.querySelectorAll('.cardToday .button');
 
@@ -103,39 +102,36 @@ function setupCardTransition() {
             // Récupérer la carte parent du bouton
             const card = button.closest('.card');
 
-            if (card.classList.contains('cardToday')) {
-                // Ajouter une classe temporaire pour la transition
-                card.classList.add('transitioning');
+            // Ajouter une classe de transition pour une animation fluide
+            card.classList.add('transitioning');
 
-                // Utiliser setTimeout pour attendre que l'animation soit jouée
-                setTimeout(() => {
-                    // Transformer la carte "Today" en "Past"
-                    const title = card.querySelector('h1').textContent;
-                    const image = card.querySelector('.card-image-container img').src;
-                    const activityName = 'Activité du jour'; // Ajoutez le titre correspondant
-                    const description = 'Description de l’activité dévoilée !'; // Ajoutez une description appropriée
+            // Attendre la fin de l'animation (300ms par exemple) avant de changer le contenu
+            setTimeout(() => {
+                // Extraire les informations de la carte
+                const title = card.querySelector('h1').textContent;
+                const image = card.querySelector('.card-image-container img').src;
+                const activityName = card.querySelector('h2').textContent; // Nom de l'activité
+                const description = card.querySelector('p').textContent; // Description de l'activité
 
-                    // Modifier l'intérieur de la carte
-                    card.innerHTML = `
-                        <div class="card-image-container">
-                            <img src="${image}" alt="${activityName}">
-                        </div>
-                        <div class="card-content">
-                            <h1>${title}</h1>
-                            <h2>${activityName}</h2>
-                            <p>${description}</p>
-                        </div>
-                    `;
+                // Modifier l'intérieur de la carte
+                card.innerHTML = `
+                    <div class="card-image-container">
+                        <img src="${image}" alt="${activityName}">
+                    </div>
+                    <div class="card-content">
+                        <h1>${title}</h1>
+                        <h2>${activityName}</h2>
+                        <p>${description}</p>
+                    </div>
+                `;
 
-                    // Changer les classes après la transition
-                    card.classList.remove('cardToday', 'card-green', 'card-red', 'transitioning');
-                    card.classList.add('cardPast');
-                }, 300); // La durée doit correspondre à celle définie dans l'animation CSS
-            }
+                // Changer les classes pour transformer la carte "Today" en "Past"
+                card.classList.remove('cardToday', 'card-green', 'card-red', 'transitioning');
+                card.classList.add('cardPast');
+            }, 300); // Durée de l'animation
         });
     });
 }
 
-// Appeler la fonction après avoir généré les cartes
-setupCardTransition();
+openCard(); // Liez cette fonction après la génération des cartes
 
