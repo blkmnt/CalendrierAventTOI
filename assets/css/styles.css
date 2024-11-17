@@ -318,7 +318,7 @@ footer {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #cccccc;
+    background-color: ##000000;
     transition: .4s;
     border-radius: 99px;
 }
@@ -340,7 +340,7 @@ footer {
 }
 
 input:checked + .slider {
-    background-color: #3a86ff;
+    background: linear-gradient(45deg, #004C38, #0B9A7D);
 }
 
 input:checked + .slider:before {
