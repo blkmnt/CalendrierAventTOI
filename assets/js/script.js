@@ -100,17 +100,16 @@ generateCards();
 // Fonction qui ajoute l'événement "Ouvrir" au bouton après un délai
 function openCard() {
     setTimeout(function () {
-        const card = document.getElementById('cardToday');
         const h2 = document.getElementById('cardTitle');
         const p = document.getElementById('cardDescription');
         const button = document.getElementById('openButton');
 
-        if (card && h2 && p && button) {
+        if (h2 && p && button) {
             button.addEventListener('click', function () {
                 // Ajouter une classe pour le fade out du bouton
                 button.classList.add('fade-out');
 
-                // Faire apparaître les emojis 🎁
+                // Faire apparaître les emojis 🎁 en même temps que h2 et p
                 createSnowfall();
 
                 // Afficher h2 et p avec un fade in immédiatement
@@ -118,14 +117,6 @@ function openCard() {
                 p.style.display = 'block';
                 h2.classList.add('fade-in');
                 p.classList.add('fade-in');
-
-                // Changer la classe de la carte avec un effet de fade in
-                card.classList.add('fade-out');
-                setTimeout(() => {
-                    // Appliquer la nouvelle classe après le fade-out
-                    card.classList.remove('cardToday', 'card-red');
-                    card.classList.add('cardPast', 'fade-in');
-                }, 500);
 
                 // Masquer le bouton après le fade-out
                 setTimeout(() => {
