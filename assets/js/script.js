@@ -110,18 +110,18 @@ function openCard() {
                 button.classList.add('fade-out');
 
                 // Faire apparaître des emojis 🎁
-                createSnowfall();
-
-                // Après 0.5 seconde (durée du fade out), masquer le bouton et afficher les autres éléments
-                setTimeout(() => {
-                    button.style.display = 'none';
-
-                    // Afficher h2 et p avec un fade in
+                createSnowfall(() => {
+                    // Une fois l'animation terminée
                     h2.style.display = 'block';
                     p.style.display = 'block';
                     h2.classList.add('fade-in');
                     p.classList.add('fade-in');
-                }, 500); // Correspond à la durée du fade out
+                });
+
+                // Masquer le bouton après le fade-out
+                setTimeout(() => {
+                    button.style.display = 'none';
+                }, 500);
             });
         } else {
             console.error("Les éléments nécessaires n'ont pas été trouvés.");
@@ -130,10 +130,10 @@ function openCard() {
 }
 
 // Fonction pour créer les emojis qui tombent
-function createSnowfall() {
+function createSnowfall(onComplete) {
     const container = document.body;
-    const duration = 2500; // Durée totale de l'animation (en ms)
     const snowflakeCount = 50; // Nombre de flocons/emoji 🎁
+    let completedCount = 0; // Compteur pour suivre les flocons terminés
 
     for (let i = 0; i < snowflakeCount; i++) {
         const snowflake = document.createElement('div');
@@ -143,16 +143,22 @@ function createSnowfall() {
         // Position initiale aléatoire
         snowflake.style.left = Math.random() * 100 + 'vw';
         snowflake.style.animationDuration = 2 + Math.random() + 's'; // Vitesse aléatoire
-        snowflake.style.animationDelay = Math.random() * 2.5 + 's'; // Décalage aléatoire
 
         container.appendChild(snowflake);
 
-        // Supprimer le flocon après l'animation
-        setTimeout(() => {
-            snowflake.remove();
-        }, duration);
+        // Écouter la fin de l'animation pour chaque flocon
+        snowflake.addEventListener('animationend', () => {
+            snowflake.remove(); // Supprimer le flocon du DOM
+            completedCount++; // Incrémenter le compteur des flocons terminés
+
+            // Si tous les flocons sont terminés, appeler le callback
+            if (completedCount === snowflakeCount && typeof onComplete === 'function') {
+                onComplete();
+            }
+        });
     }
 }
+
 
 // Appeler openCard lorsque le DOM est prêt
 document.addEventListener('DOMContentLoaded', function () {
