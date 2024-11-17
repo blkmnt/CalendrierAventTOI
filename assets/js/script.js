@@ -94,4 +94,35 @@ async function generateCards() {
 // Appeler la fonction pour générer les cartes
 generateCards();
 
+// Fonction openCard
+function openCard(event) {
+    // Empêcher le comportement par défaut du bouton
+    event.preventDefault();
+
+    // Récupérer la carte parente du bouton cliqué
+    const card = event.target.closest('.cardToday');
+    if (!card) return; // Si aucun parent correspondant, on quitte
+
+    // Récupérer les éléments h2, p et button à l'intérieur de la carte
+    const activityTitle = card.querySelector('h2');
+    const activityDescription = card.querySelector('p');
+    const button = card.querySelector('button');
+
+    // Vérifier que tous les éléments nécessaires sont présents
+    if (activityTitle && activityDescription && button) {
+        // Afficher le titre et la description
+        activityTitle.style.display = '';
+        activityDescription.style.display = '';
+
+        // Masquer le bouton
+        button.style.display = 'none';
+    }
+}
+
+// Ajouter les gestionnaires d'événements à tous les boutons "Ouvrir" des cartes `cardToday`
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.cardToday .button').forEach(button => {
+        button.addEventListener('click', openCard);
+    });
+});
 
