@@ -134,7 +134,7 @@ header {
 }
 
 .card-image-container img {
-    height: 100px;
+    height: 150px;
     object-fit: cover;
 }
 
