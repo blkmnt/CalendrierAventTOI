@@ -87,7 +87,7 @@ header {
 /* Content Section */
 .content {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
     padding: 0rem 2rem 8rem 2rem;
     max-width: 1200px;
@@ -104,7 +104,7 @@ header {
     height: 100%;
     align-items: center;
     width: inherit;
-    gap: 1.5rem;
+    gap: 1rem;
     background-color: white;
 }
 
@@ -129,8 +129,6 @@ header {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    background: linear-gradient(45deg, #CEA872, #E6C7A1);
-    border-radius: 99px;
     width: fit-content;
     height: fit-content;
 }
@@ -138,7 +136,6 @@ header {
 .card-image-container img {
     height: 100px;
     object-fit: cover;
-    margin: 1.5rem;
 }
 
 .card:hover {
