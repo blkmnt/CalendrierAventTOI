@@ -164,6 +164,12 @@ header {
     color: #000000;
 }
 
+.cardPast .button:hover {
+    background-color: transparent;
+    color: #FFFFFF;
+    filter: none;
+    cursor: initial;
+}
 .cardToday .button:hover {
     background: linear-gradient(45deg, #CEA872, #E6C7A1);
     color: #000000;
