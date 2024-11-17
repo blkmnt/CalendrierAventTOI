@@ -158,13 +158,47 @@ function createSnowfall() {
     }
 }
 
-
-
-
-
 // Appeler openCard lorsque le DOM est prêt
 document.addEventListener('DOMContentLoaded', function () {
     openCard(); // Appel de la fonction openCard
 });
 
 
+// Fonction pour masquer ou afficher les cartes "cardPast" en fonction du toggle
+function togglePastCards() {
+    // Sélectionner l'élément du toggle
+    const toggle = document.getElementById('toggleCards');
+
+    // Vérifier si le toggle existe
+    if (!toggle) {
+        console.error("Le toggle avec l'ID 'toggleCards' n'a pas été trouvé.");
+        return;
+    }
+
+    // Ajouter un écouteur d'événement pour le changement d'état du toggle
+    toggle.addEventListener('change', () => {
+        // Ajouter un délai de 500ms avant d'exécuter le masquage/réaffichage des cartes
+        setTimeout(() => {
+            // Sélectionner toutes les cartes avec la classe 'cardPast'
+            const pastCards = document.querySelectorAll('.card.cardPast');
+
+            // Vérifier l'état du toggle
+            if (toggle.checked) {
+                // Masquer les cartes (affichage = none)
+                pastCards.forEach(card => {
+                    card.style.display = 'none';
+                });
+            } else {
+                // Réafficher les cartes (affichage = block)
+                pastCards.forEach(card => {
+                    card.style.display = 'block';
+                });
+            }
+        }, 500); // Délai de 500ms
+    });
+}
+
+// Appel de la fonction après que le DOM soit entièrement chargé
+document.addEventListener('DOMContentLoaded', function () {
+    togglePastCards(); // Initialisation de la gestion du toggle
+});
