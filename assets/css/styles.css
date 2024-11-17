@@ -108,15 +108,15 @@ header {
     background-color: white;
 }
 
-.card:nth-child(2n+1) h1, .card:nth-child(2n+2) h1 {
+.card-red h1, .card-green h1 {
     color:#FFFFFF;
 }
 
-.card:nth-child(2n+1) {
+.card-red {
     background: linear-gradient(45deg, #8D0013, #D10028);
 }
 
-.card:nth-child(2n+2) {
+.card-green {
     background: linear-gradient(45deg, #004C38, #0B9A7D);
 }
 
