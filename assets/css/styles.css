@@ -244,16 +244,12 @@ footer {
     .hero-image {
         max-width: 100%;
     }
-    .card {
+    .card .cardPast, .card .cardFuture {
         flex-direction: row;
-        padding: 1rem;
         gap: 1rem;
     }
     .card-image-container {
         overflow: unset;
-    }
-    .card-image-container img {
-        height: 100px;
     }
     h1 {
         font-size: 1.25rem;
