@@ -118,7 +118,7 @@ function openCard() {
         } else {
             console.error("Les éléments nécessaires n'ont pas été trouvés.");
         }
-    }, 100); // Délai de 100ms pour attendre que la carte soit visible
+    }, 500); // Délai de 500ms pour attendre que la carte soit visible
 }
 
 // Appeler openCard lorsque le DOM est prêt
