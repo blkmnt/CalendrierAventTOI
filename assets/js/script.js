@@ -91,3 +91,51 @@ async function generateCards() {
 
 // Appeler la fonction pour générer les cartes
 generateCards();
+
+
+// Fonction pour transformer la carte "Today" en "Past"
+function setupCardTransition() {
+    // Sélectionner tous les boutons "Ouvrir" des cartes "Today"
+    const openButtons = document.querySelectorAll('.cardToday .button');
+
+    openButtons.forEach((button) => {
+        button.addEventListener('click', function () {
+            // Récupérer la carte parent du bouton
+            const card = button.closest('.card');
+
+            if (card.classList.contains('cardToday')) {
+                // Ajouter une classe temporaire pour la transition
+                card.classList.add('transitioning');
+
+                // Utiliser setTimeout pour attendre que l'animation soit jouée
+                setTimeout(() => {
+                    // Transformer la carte "Today" en "Past"
+                    const title = card.querySelector('h1').textContent;
+                    const image = card.querySelector('.card-image-container img').src;
+                    const activityName = 'Activité du jour'; // Ajoutez le titre correspondant
+                    const description = 'Description de l’activité dévoilée !'; // Ajoutez une description appropriée
+
+                    // Modifier l'intérieur de la carte
+                    card.innerHTML = `
+                        <div class="card-image-container">
+                            <img src="${image}" alt="${activityName}">
+                        </div>
+                        <div class="card-content">
+                            <h1>${title}</h1>
+                            <h2>${activityName}</h2>
+                            <p>${description}</p>
+                        </div>
+                    `;
+
+                    // Changer les classes après la transition
+                    card.classList.remove('cardToday', 'card-green', 'card-red', 'transitioning');
+                    card.classList.add('cardPast');
+                }, 300); // La durée doit correspondre à celle définie dans l'animation CSS
+            }
+        });
+    });
+}
+
+// Appeler la fonction après avoir généré les cartes
+setupCardTransition();
+
