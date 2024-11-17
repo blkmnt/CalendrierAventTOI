@@ -113,12 +113,6 @@ header {
     align-items: center;
     width: inherit;
     background-color: white;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.card.transitioning {
-    transform: scale(0.95);
-    opacity: 0.5;
 }
 
 .card-red h1, .card-green h1 {
@@ -177,11 +171,7 @@ header {
     color: #000000;
 }
 
-.cardPast {
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    transform: scale(1);
-    opacity: 1;
-}
+
 .cardToday .button:hover {
     background: linear-gradient(45deg, #CEA872, #E6C7A1);
     color: #000000;
