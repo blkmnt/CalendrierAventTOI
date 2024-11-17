@@ -132,7 +132,7 @@ function openCard() {
 // Fonction pour créer les emojis qui tombent
 function createSnowfall(onComplete) {
     const container = document.body;
-    const snowflakeCount = 50; // Nombre de flocons/emoji 🎁
+    const snowflakeCount = 100; // Nombre de flocons/emoji 🎁
     let completedCount = 0; // Compteur pour suivre les flocons terminés
 
     for (let i = 0; i < snowflakeCount; i++) {
@@ -142,6 +142,12 @@ function createSnowfall(onComplete) {
 
         // Position initiale aléatoire
         snowflake.style.left = Math.random() * 100 + 'vw';
+
+        // Ajouter un délai initial aléatoire avant le début de l'animation
+        const delay = Math.random() * 3; // Jusqu'à 3 secondes de délai
+        snowflake.style.animationDelay = delay + 's';
+
+        // Durée de l'animation pour atteindre le bas
         snowflake.style.animationDuration = 2 + Math.random() + 's'; // Vitesse aléatoire
 
         container.appendChild(snowflake);
@@ -158,6 +164,7 @@ function createSnowfall(onComplete) {
         });
     }
 }
+
 
 
 // Appeler openCard lorsque le DOM est prêt
