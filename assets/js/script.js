@@ -5,6 +5,7 @@ async function generateCards() {
     const headers = rows[0].split(';'); // Extraction des en-têtes
 
     const today = new Date();
+    const todayDateOnly = new Date(today.getFullYear(), today.getMonth(), today.getDate()); // Date sans l'heure
     const contentSection = document.querySelector('.content');
 
     // Réinitialiser le contenu de la section pour éviter les doublons
@@ -25,6 +26,7 @@ async function generateCards() {
         // Conversion de la date CSV (JJ/MM/AAAA) en objet Date
         const [day, month, year] = date.split('/').map(Number); // Séparer JJ, MM, AAAA
         const csvDate = new Date(year, month - 1, day); // Mois commence à 0 en JS
+        const csvDateOnly = new Date(csvDate.getFullYear(), csvDate.getMonth(), csvDate.getDate()); // Date sans heure
 
         // Vérification si la date est valide
         if (isNaN(csvDate.getTime())) {
@@ -38,7 +40,7 @@ async function generateCards() {
         // Création de l'élément HTML pour la carte
         let cardHTML = '';
 
-        if (csvDate < today) {
+        if (csvDateOnly < todayDateOnly) {
             // Carte des jours passés
             cardHTML = `
                 <div class="card cardPast">
@@ -52,7 +54,7 @@ async function generateCards() {
                     </div>
                 </div>
             `;
-        } else if (csvDate.toDateString() === today.toDateString()) {
+        } else if (csvDateOnly.getTime() === todayDateOnly.getTime()) {
             // Carte du jour
             const colorClass = dayOfMonth % 2 === 0 ? 'card-green' : 'card-red';
             cardHTML = `
