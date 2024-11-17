@@ -97,24 +97,33 @@ generateCards();
 
 
 
+// Fonction qui ajoute l'événement "Ouvrir" au bouton après un délai
 function openCard() {
-    // Sélectionner les éléments h2, p et le bouton à partir de leurs id
-    const h2 = document.getElementById('cardTitle');
-    const p = document.getElementById('cardDescription');
-    const button = document.getElementById('openButton');
+    // Utiliser setTimeout pour différer l'attachement de l'événement
+    setTimeout(function () {
+        const h2 = document.getElementById('cardTitle');
+        const p = document.getElementById('cardDescription');
+        const button = document.getElementById('openButton');
 
-    // Modifier le style de h2 et p pour les rendre visibles
-    h2.style.display = 'block';
-    p.style.display = 'block';
+        // Vérifier si les éléments existent avant d'ajouter l'événement
+        if (h2 && p && button) {
+            button.addEventListener('click', function () {
+                // Afficher h2 et p
+                h2.style.display = 'block';
+                p.style.display = 'block';
 
-    // Cacher le bouton
-    button.style.display = 'none';
+                // Cacher le bouton
+                button.style.display = 'none';
+            });
+        } else {
+            console.error("Les éléments nécessaires n'ont pas été trouvés.");
+        }
+    }, 100); // Délai de 100ms pour attendre que la carte soit visible
 }
 
-// S'assurer que le DOM est prêt avant d'ajouter l'événement
+// Appeler openCard lorsque le DOM est prêt
 document.addEventListener('DOMContentLoaded', function () {
-    const button = document.getElementById('openButton');
-    button.addEventListener('click', openCard);
+    openCard(); // Appel de la fonction openCard
 });
 
 
