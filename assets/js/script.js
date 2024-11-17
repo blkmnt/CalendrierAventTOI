@@ -97,23 +97,32 @@ generateCards();
 
 
 
-// Fonction openCard pour gérer l'ouverture des cartes
 function openCard(event) {
     // Vérifie si un événement a été déclenché
     if (event) {
-        event.preventDefault(); // Empêche le comportement par défaut (si nécessaire)
+        event.preventDefault(); // Empêche le comportement par défaut du bouton
+    }
+
+    // Vérifie si event.target est défini
+    const target = event?.target;
+    if (!target) {
+        console.error("Événement ou cible non valide.");
+        return;
     }
 
     // Récupérer la carte parente du bouton cliqué
-    const card = event.target.closest('.cardToday');
-    if (!card) return; // Si aucun parent correspondant, on quitte la fonction
+    const card = target.closest('.cardToday');
+    if (!card) {
+        console.error("Impossible de trouver une carte parente avec la classe '.cardToday'.");
+        return;
+    }
 
     // Récupérer les éléments h2, p et button à l'intérieur de la carte
     const activityTitle = card.querySelector('h2');
     const activityDescription = card.querySelector('p');
     const button = card.querySelector('button');
 
-    // Vérifier que tous les éléments nécessaires sont présents
+    // Vérifie que tous les éléments nécessaires sont présents
     if (activityTitle && activityDescription && button) {
         // Afficher le titre et la description
         activityTitle.style.display = '';
@@ -121,6 +130,8 @@ function openCard(event) {
 
         // Masquer le bouton
         button.style.display = 'none';
+    } else {
+        console.error("Éléments de contenu manquants dans la carte.");
     }
 }
 
@@ -130,5 +141,6 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', openCard);
     });
 });
+
 
 
