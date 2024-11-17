@@ -1,4 +1,3 @@
-// Fonction pour charger le fichier CSV et générer les cartes
 async function generateCards() {
     const response = await fetch('assets/gifts.csv');
     const csvData = await response.text();
@@ -7,6 +6,9 @@ async function generateCards() {
 
     const today = new Date();
     const contentSection = document.querySelector('.content');
+
+    // Réinitialiser le contenu de la section pour éviter les doublons
+    contentSection.innerHTML = '';
 
     // Boucle à partir de la deuxième ligne (les données)
     for (let i = 1; i < rows.length; i++) {
@@ -72,4 +74,3 @@ async function generateCards() {
 
 // Appeler la fonction pour générer les cartes
 generateCards();
-
