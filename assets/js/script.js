@@ -108,7 +108,10 @@ function openCard() {
             button.addEventListener('click', function () {
                 // Ajouter une classe pour le fade out du bouton
                 button.classList.add('fade-out');
-                
+
+                // Faire apparaître des emojis 🎁
+                createSnowfall();
+
                 // Après 0.5 seconde (durée du fade out), masquer le bouton et afficher les autres éléments
                 setTimeout(() => {
                     button.style.display = 'none';
@@ -126,6 +129,30 @@ function openCard() {
     }, 500); // Délai pour attendre que la carte soit visible
 }
 
+// Fonction pour créer les emojis qui tombent
+function createSnowfall() {
+    const container = document.body;
+    const duration = 2500; // Durée totale de l'animation (en ms)
+    const snowflakeCount = 50; // Nombre de flocons/emoji 🎁
+
+    for (let i = 0; i < snowflakeCount; i++) {
+        const snowflake = document.createElement('div');
+        snowflake.className = 'snowflake';
+        snowflake.textContent = '🎁';
+
+        // Position initiale aléatoire
+        snowflake.style.left = Math.random() * 100 + 'vw';
+        snowflake.style.animationDuration = 2 + Math.random() + 's'; // Vitesse aléatoire
+        snowflake.style.animationDelay = Math.random() * 2.5 + 's'; // Décalage aléatoire
+
+        container.appendChild(snowflake);
+
+        // Supprimer le flocon après l'animation
+        setTimeout(() => {
+            snowflake.remove();
+        }, duration);
+    }
+}
 
 // Appeler openCard lorsque le DOM est prêt
 document.addEventListener('DOMContentLoaded', function () {
