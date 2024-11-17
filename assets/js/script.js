@@ -109,14 +109,14 @@ function openCard() {
                 // Ajouter une classe pour le fade out du bouton
                 button.classList.add('fade-out');
 
-                // Faire apparaître des emojis 🎁
-                createSnowfall(() => {
-                    // Une fois l'animation terminée
-                    h2.style.display = 'block';
-                    p.style.display = 'block';
-                    h2.classList.add('fade-in');
-                    p.classList.add('fade-in');
-                });
+                // Faire apparaître les emojis 🎁 en même temps que h2 et p
+                createSnowfall();
+
+                // Afficher h2 et p avec un fade in immédiatement
+                h2.style.display = 'block';
+                p.style.display = 'block';
+                h2.classList.add('fade-in');
+                p.classList.add('fade-in');
 
                 // Masquer le bouton après le fade-out
                 setTimeout(() => {
@@ -130,10 +130,9 @@ function openCard() {
 }
 
 // Fonction pour créer les emojis qui tombent
-function createSnowfall(onComplete) {
+function createSnowfall() {
     const container = document.body;
-    const snowflakeCount = 100; // Nombre de flocons/emoji 🎁
-    let completedCount = 0; // Compteur pour suivre les flocons terminés
+    const snowflakeCount = 50; // Nombre de flocons/emoji 🎁
 
     for (let i = 0; i < snowflakeCount; i++) {
         const snowflake = document.createElement('div');
@@ -152,18 +151,13 @@ function createSnowfall(onComplete) {
 
         container.appendChild(snowflake);
 
-        // Écouter la fin de l'animation pour chaque flocon
+        // Supprimer le flocon après son animation
         snowflake.addEventListener('animationend', () => {
-            snowflake.remove(); // Supprimer le flocon du DOM
-            completedCount++; // Incrémenter le compteur des flocons terminés
-
-            // Si tous les flocons sont terminés, appeler le callback
-            if (completedCount === snowflakeCount && typeof onComplete === 'function') {
-                onComplete();
-            }
+            snowflake.remove();
         });
     }
 }
+
 
 
 
