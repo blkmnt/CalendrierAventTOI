@@ -97,34 +97,42 @@ generateCards();
 
 
 
-function openCard(event) {
-    if (!event || !event.target) {
-        console.error("Événement ou cible non valide.");
-        return;
-    }
+document.addEventListener('DOMContentLoaded', () => {
+    // Ajoute un gestionnaire d'événements à chaque bouton "Ouvrir" des cartes cardToday
+    document.querySelectorAll('.cardToday .button').forEach(button => {
+        button.addEventListener('click', function (event) {
+            // Empêche le comportement par défaut du bouton
+            event.preventDefault();
 
-    console.log("openCard a été appelée"); // Vérifie que la fonction est bien déclenchée
+            // Récupérer la carte parente du bouton cliqué
+            const card = event.target.closest('.cardToday');
+            if (!card) {
+                console.error("Impossible de trouver une carte parente avec la classe '.cardToday'.");
+                return;
+            }
 
-    // Récupérer la carte parente du bouton cliqué
-    const card = event.target.closest('.cardToday');
-    if (!card) {
-        console.error("Impossible de trouver une carte parente avec la classe '.cardToday'.");
-        return;
-    }
+            // Récupérer les éléments h2, p et button à l'intérieur de la carte
+            const activityTitle = card.querySelector('h2');
+            const activityDescription = card.querySelector('p');
+            const button = card.querySelector('button');
 
-    // Récupérer les éléments h2, p et button à l'intérieur de la carte
-    const activityTitle = card.querySelector('h2');
-    const activityDescription = card.querySelector('p');
-    const button = card.querySelector('button');
+            if (activityTitle && activityDescription && button) {
+                // Transition douce pour afficher les éléments cachés
+                activityTitle.style.display = '';
+                activityDescription.style.display = '';
 
-    if (activityTitle && activityDescription && button) {
-        activityTitle.style.display = '';
-        activityDescription.style.display = '';
-        button.style.display = 'none';
-    } else {
-        console.error("Éléments de contenu manquants dans la carte.");
-    }
-}
+                // Transition douce pour masquer le bouton
+                button.style.display = 'none';
+
+                // Change la classe de la carte pour cardPast
+                card.classList.remove('cardToday');
+                card.classList.add('cardPast');
+            } else {
+                console.error("Éléments de contenu manquants dans la carte.");
+            }
+        });
+    });
+});
 
 
 
