@@ -10,15 +10,30 @@ async function generateCards() {
     // Réinitialiser le contenu de la section pour éviter les doublons
     contentSection.innerHTML = '';
 
+    // Tableau des mois en français
+    const mois = [
+        'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
+        'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'
+    ];
+
     // Boucle à partir de la deuxième ligne (les données)
     for (let i = 1; i < rows.length; i++) {
         const row = rows[i].trim();
         if (!row) continue; // Ignorer les lignes vides
         const [date, activite, description, image] = row.split(';');
 
-        // Conversion de la date CSV en objet Date
-        const csvDate = new Date(date);
+        // Conversion de la date CSV (JJ/MM/AAAA) en objet Date
+        const [day, month, year] = date.split('/').map(Number); // Séparer JJ, MM, AAAA
+        const csvDate = new Date(year, month - 1, day); // Mois commence à 0 en JS
+
+        // Vérification si la date est valide
+        if (isNaN(csvDate.getTime())) {
+            console.error(`Date invalide trouvée : ${date}`);
+            continue; // Ignorer les lignes avec une date invalide
+        }
+
         const dayOfMonth = csvDate.getDate(); // Jour du mois (1-31)
+        const formattedDate = `${dayOfMonth} ${mois[month - 1]}`; // Ex : "25 Décembre"
 
         // Création de l'élément HTML pour la carte
         let cardHTML = '';
@@ -31,7 +46,7 @@ async function generateCards() {
                         <img src="${image}" alt="${activite}">
                     </div>
                     <div class="card-content">
-                        <h1>${date}</h1>
+                        <h1>${formattedDate}</h1>
                         <h2>${activite}</h2>
                         <p>${description}</p>
                     </div>
@@ -46,7 +61,7 @@ async function generateCards() {
                         <img src="${image}" alt="${activite}">
                     </div>
                     <div class="card-content">
-                        <h1>${date}</h1>
+                        <h1>${formattedDate}</h1>
                         <button class="button">Ouvrir</button>
                     </div>
                 </div>
@@ -55,12 +70,12 @@ async function generateCards() {
             // Carte des jours futurs
             const colorClass = dayOfMonth % 2 === 0 ? 'card-green' : 'card-red';
             cardHTML = `
-                <div class="card cardFuture ${colorClass}">
+                <div class="card cardPast ${colorClass}">
                     <div class="card-image-container">
                         <img src="${image}" alt="${activite}">
                     </div>
                     <div class="card-content">
-                        <h1>${date}</h1>
+                        <h1>${formattedDate}</h1>
                         <button class="button" disabled>Bientôt dispo</button>
                     </div>
                 </div>
