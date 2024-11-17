@@ -138,11 +138,22 @@ header {
     overflow: hidden;
     width: fit-content;
     height: fit-content;
+    border-radius: 99px;
+    background-color: white;
+}
+
+.cardPast:nth-child(2n+1) .card-image-container {
+    background: linear-gradient(45deg, #8D0013, #D10028);
+}
+
+.cardPast:nth-child(2n+2) .card-image-container {
+    background: linear-gradient(45deg, #004C38, #0B9A7D);
 }
 
 .card-image-container img {
-    height: 150px;
+    height: 100px;
     object-fit: cover;
+    padding: 1rem;
 }
 
 .card:hover {
