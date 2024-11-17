@@ -97,44 +97,25 @@ generateCards();
 
 
 
-// Assurez-vous que tout le DOM est chargé avant d'exécuter le script
-document.addEventListener('DOMContentLoaded', () => {
-    // Attache un gestionnaire d'événements à chaque bouton "Ouvrir" dans les cartes cardToday
-    const buttons = document.querySelectorAll('.cardToday .button');
-    if (buttons.length === 0) {
-        console.warn("Aucun bouton 'Ouvrir' trouvé dans les cartes cardToday.");
-    }
+function openCard() {
+    // Sélectionner les éléments h2, p et le bouton dans cardToday
+    const cardToday = document.querySelector('.cardToday');
+    const h2 = cardToday.querySelector('h2');
+    const p = cardToday.querySelector('p');
+    const button = cardToday.querySelector('button');
 
-    buttons.forEach(button => {
-        button.addEventListener('click', function (event) {
-            // Empêche le comportement par défaut
-            event.preventDefault();
+    // Modifier le style de h2 et p pour les rendre visibles
+    h2.style.display = '';
+    p.style.display = '';
 
-            // Récupérer la carte parente
-            const card = event.target.closest('.cardToday');
-            if (!card) {
-                console.error("Impossible de trouver une carte parente pour le bouton cliqué.");
-                return;
-            }
+    // Cacher le bouton
+    button.style.display = 'none';
+}
 
-            // Récupérer les éléments dans la carte
-            const activityTitle = card.querySelector('h2');
-            const activityDescription = card.querySelector('p');
-            const button = card.querySelector('button');
+// Ajouter un événement pour que la fonction soit appelée au clic sur le bouton "Ouvrir"
+const button = document.querySelector('.cardToday button');
+button.addEventListener('click', openCard);
 
-            if (activityTitle && activityDescription && button) {
-                // Affiche le titre et la description
-                activityTitle.style.display = '';
-                activityDescription.style.display = '';
-
-                // Masque le bouton
-                button.style.display = 'none';
-
-            } else {
-                console.error("Les éléments h2, p ou button sont introuvables dans la carte.");
-            }
-        });
-    });
 });
 
 
