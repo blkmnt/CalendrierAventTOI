@@ -189,9 +189,9 @@ function togglePastCards() {
                     card.style.display = 'none';
                 });
             } else {
-                // Réafficher les cartes (affichage = block)
+                // Réafficher les cartes
                 pastCards.forEach(card => {
-                    card.style.display = 'block';
+                    card.style.display = '';
                 });
             }
         }, 500); // Délai de 500ms
