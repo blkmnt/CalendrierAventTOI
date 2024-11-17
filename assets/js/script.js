@@ -99,27 +99,33 @@ generateCards();
 
 // Fonction qui ajoute l'événement "Ouvrir" au bouton après un délai
 function openCard() {
-    // Utiliser setTimeout pour différer l'attachement de l'événement
     setTimeout(function () {
         const h2 = document.getElementById('cardTitle');
         const p = document.getElementById('cardDescription');
         const button = document.getElementById('openButton');
 
-        // Vérifier si les éléments existent avant d'ajouter l'événement
         if (h2 && p && button) {
             button.addEventListener('click', function () {
-                // Afficher h2 et p
-                h2.style.display = 'block';
-                p.style.display = 'block';
+                // Ajouter une classe pour le fade out du bouton
+                button.classList.add('fade-out');
+                
+                // Après 0.5 seconde (durée du fade out), masquer le bouton et afficher les autres éléments
+                setTimeout(() => {
+                    button.style.display = 'none';
 
-                // Cacher le bouton
-                button.style.display = 'none';
+                    // Afficher h2 et p avec un fade in
+                    h2.style.display = 'block';
+                    p.style.display = 'block';
+                    h2.classList.add('fade-in');
+                    p.classList.add('fade-in');
+                }, 500); // Correspond à la durée du fade out
             });
         } else {
             console.error("Les éléments nécessaires n'ont pas été trouvés.");
         }
-    }, 500); // Délai de 500ms pour attendre que la carte soit visible
+    }, 500); // Délai pour attendre que la carte soit visible
 }
+
 
 // Appeler openCard lorsque le DOM est prêt
 document.addEventListener('DOMContentLoaded', function () {
