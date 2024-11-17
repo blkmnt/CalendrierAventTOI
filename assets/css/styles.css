@@ -89,7 +89,7 @@ header {
 }
 
 .hero-image {
-    max-width: 900px;
+    max-width: 975px;
 }
 
 /* Content Section */
@@ -282,7 +282,7 @@ footer {
 .toggle {
     display: flex;
     justify-content: center;
-    padding: 1rem;
+    padding: 0 0 1rem 0;
     align-items: center;
     gap: 1rem;
     flex-direction: row;
