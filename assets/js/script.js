@@ -70,13 +70,13 @@ async function generateCards() {
             // Carte des jours futurs
             const colorClass = dayOfMonth % 2 === 0 ? 'card-green' : 'card-red';
             cardHTML = `
-                <div class="card cardPast ${colorClass}">
+                <div class="card cardFuture ${colorClass}">
                     <div class="card-image-container">
                         <img src="${image}" alt="${activite}">
                     </div>
                     <div class="card-content">
                         <h1>${formattedDate}</h1>
-                        <button class="button" disabled>Bientôt dispo</button>
+                        <button class="button">Bientôt dispo</button>
                     </div>
                 </div>
             `;
