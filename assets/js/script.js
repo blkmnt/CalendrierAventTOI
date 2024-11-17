@@ -116,7 +116,5 @@ function openCard() {
 const button = document.querySelector('.cardToday button');
 button.addEventListener('click', openCard);
 
-});
-
 
 
