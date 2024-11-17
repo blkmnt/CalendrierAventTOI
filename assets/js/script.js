@@ -130,9 +130,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Masque le bouton
                 button.style.display = 'none';
 
-                // Change la classe de la carte pour 'cardPast'
-                card.classList.remove('cardToday');
-                card.classList.add('cardPast');
             } else {
                 console.error("Les éléments h2, p ou button sont introuvables dans la carte.");
             }
