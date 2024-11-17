@@ -104,16 +104,17 @@ function openCard() {
     const button = document.getElementById('openButton');
 
     // Modifier le style de h2 et p pour les rendre visibles
-    h2.style.display = '';
-    p.style.display = '';
+    h2.style.display = 'block';
+    p.style.display = 'block';
 
     // Cacher le bouton
     button.style.display = 'none';
 }
 
-// Ajouter un événement pour que la fonction soit appelée au clic sur le bouton "Ouvrir"
-const button = document.getElementById('openButton');
-button.addEventListener('click', openCard);
-
+// S'assurer que le DOM est prêt avant d'ajouter l'événement
+document.addEventListener('DOMContentLoaded', function () {
+    const button = document.getElementById('openButton');
+    button.addEventListener('click', openCard);
+});
 
 
