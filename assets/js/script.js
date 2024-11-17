@@ -97,38 +97,44 @@ generateCards();
 
 
 
+// Assurez-vous que tout le DOM est chargé avant d'exécuter le script
 document.addEventListener('DOMContentLoaded', () => {
-    // Ajoute un gestionnaire d'événements à chaque bouton "Ouvrir" des cartes cardToday
-    document.querySelectorAll('.cardToday .button').forEach(button => {
+    // Attache un gestionnaire d'événements à chaque bouton "Ouvrir" dans les cartes cardToday
+    const buttons = document.querySelectorAll('.cardToday .button');
+    if (buttons.length === 0) {
+        console.warn("Aucun bouton 'Ouvrir' trouvé dans les cartes cardToday.");
+    }
+
+    buttons.forEach(button => {
         button.addEventListener('click', function (event) {
-            // Empêche le comportement par défaut du bouton
+            // Empêche le comportement par défaut
             event.preventDefault();
 
-            // Récupérer la carte parente du bouton cliqué
+            // Récupérer la carte parente
             const card = event.target.closest('.cardToday');
             if (!card) {
-                console.error("Impossible de trouver une carte parente avec la classe '.cardToday'.");
+                console.error("Impossible de trouver une carte parente pour le bouton cliqué.");
                 return;
             }
 
-            // Récupérer les éléments h2, p et button à l'intérieur de la carte
+            // Récupérer les éléments dans la carte
             const activityTitle = card.querySelector('h2');
             const activityDescription = card.querySelector('p');
             const button = card.querySelector('button');
 
             if (activityTitle && activityDescription && button) {
-                // Transition douce pour afficher les éléments cachés
+                // Affiche le titre et la description
                 activityTitle.style.display = '';
                 activityDescription.style.display = '';
 
-                // Transition douce pour masquer le bouton
+                // Masque le bouton
                 button.style.display = 'none';
 
-                // Change la classe de la carte pour cardPast
+                // Change la classe de la carte pour 'cardPast'
                 card.classList.remove('cardToday');
                 card.classList.add('cardPast');
             } else {
-                console.error("Éléments de contenu manquants dans la carte.");
+                console.error("Les éléments h2, p ou button sont introuvables dans la carte.");
             }
         });
     });
