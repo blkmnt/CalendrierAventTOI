@@ -58,15 +58,15 @@ async function generateCards() {
             // Carte du jour
             const colorClass = dayOfMonth % 2 === 0 ? 'card-green' : 'card-red';
             cardHTML = `
-                <div class="card cardToday ${colorClass}">
+                <div class="card cardToday ${colorClass}" id="cardToday">
                     <div class="card-image-container">
                         <img src="${image}" alt="${activite}">
                     </div>
                     <div class="card-content">
-                        <h1>${formattedDate}</h1>
-                        <h2 style="display: none;">${activite}</h2>
-                        <p style="display: none;">${description}</p>
-                        <button class="button" style="">Ouvrir</button>
+                        <h1 id="cardDate">${formattedDate}</h1>
+                        <h2 id="cardTitle" style="display: none;">${activite}</h2>
+                        <p id="cardDescription" style="display: none;">${description}</p>
+                        <button id="openButton" class="button" style="">Ouvrir</button>
                     </div>
                 </div>
             `;
@@ -98,11 +98,10 @@ generateCards();
 
 
 function openCard() {
-    // Sélectionner les éléments h2, p et le bouton dans cardToday
-    const cardToday = document.querySelector('.cardToday');
-    const h2 = cardToday.querySelector('h2');
-    const p = cardToday.querySelector('p');
-    const button = cardToday.querySelector('button');
+    // Sélectionner les éléments h2, p et le bouton à partir de leurs id
+    const h2 = document.getElementById('cardTitle');
+    const p = document.getElementById('cardDescription');
+    const button = document.getElementById('openButton');
 
     // Modifier le style de h2 et p pour les rendre visibles
     h2.style.display = '';
@@ -113,7 +112,7 @@ function openCard() {
 }
 
 // Ajouter un événement pour que la fonction soit appelée au clic sur le bouton "Ouvrir"
-const button = document.querySelector('.cardToday button');
+const button = document.getElementById('openButton');
 button.addEventListener('click', openCard);
 
 
