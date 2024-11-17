@@ -164,17 +164,17 @@ header {
     color: #000000;
 }
 
-.card-red .button:hover, .card-green .button:hover {
+.cardToday .button:hover {
     background: linear-gradient(45deg, #CEA872, #E6C7A1);
     color: #000000;
 }
 
-.card-futureDay .button {
+.cardFuture .button {
     background-color: rgba(255, 255, 255, 0.3);
     color: #FFFFFF;
 }
 
-.card-futureDay .button:hover {
+.cardFuture .button:hover {
     background-color: rgba(255, 255, 255, 0.3);
     color: #FFFFFF;
     filter: none;
