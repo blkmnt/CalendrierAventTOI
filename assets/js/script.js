@@ -132,7 +132,7 @@ function openCard() {
 // Fonction pour créer les emojis qui tombent
 function createSnowfall() {
     const container = document.body;
-    const snowflakeCount = 150; // Nombre de flocons/emoji 🎁
+    const snowflakeCount = 100; // Nombre de flocons/emoji 🎁
 
     for (let i = 0; i < snowflakeCount; i++) {
         const snowflake = document.createElement('div');
