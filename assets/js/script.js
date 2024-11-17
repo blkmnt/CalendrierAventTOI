@@ -80,7 +80,7 @@ async function generateCards() {
                     </div>
                     <div class="card-content">
                         <h1>${formattedDate}</h1>
-                        <button class="button">Non-disponible</button>
+                        <button class="button">🔒 Verrouillé</button>
                     </div>
                 </div>
             `;
