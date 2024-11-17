@@ -116,11 +116,11 @@ header {
 }
 
 .cardPast:nth-child(2n+1) h2 {
-    color: linear-gradient(45deg, #8D0013, #D10028);
+    color: #D10028;
 }
 
 .cardPast:nth-child(2n+2) h2 {
-    color: linear-gradient(45deg, #004C38, #0B9A7D);
+    color: #0B9A7D;
 }
 
 .card-red h1, .card-green h1 {
