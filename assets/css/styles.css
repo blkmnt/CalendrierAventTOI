@@ -42,7 +42,7 @@ h2 {
 
 /* Header */
 header {
-    background: linear-gradient(45deg, #8D0013, #D10028);
+    background-color: #000000;
     height: 50px;
     width: 100%;
     padding: 0;
@@ -217,7 +217,7 @@ header {
 
 /* Footer */
 footer {
-    background: linear-gradient(45deg, #8D0013, #D10028);
+    background-color: #000000;
     height: 50px;
     width: 100%;
     padding: 0;
