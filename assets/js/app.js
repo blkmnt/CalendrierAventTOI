@@ -1,134 +1,105 @@
-let names = []; // Liste des noms
-let schedule = []; // Liste des créneaux horaires
-let winnerHistory = []; // Historique des gagnants
-let nextAvailableTime = null; // Temps du prochain créneau où la roue peut tourner
+let namesList = [];
+let spinSchedule = [];
+let history = [];
 
-// Charger les données depuis les fichiers CSV
-function loadCSVFiles() {
-  // Simuler le chargement des fichiers CSV (à remplacer par des appels AJAX vers le backend)
-  // Exemple de données
-  names = ["Alice", "Bob", "Charlie", "Diana"];
-  schedule = [
-    { date: "2024-12-01", time: "14:00", winner: null },
-    { date: "2024-12-01", time: "16:00", winner: null },
-  ];
-  winnerHistory = [...schedule]; // Initialiser avec les créneaux horaires
-  
-  renderWheel();
-  updateButtonState();
-  renderHistory();
+const spinButton = document.getElementById("spin-button");
+const countdownDisplay = document.getElementById("countdown");
+const nextSpinTimeDisplay = document.getElementById("next-spin-time");
+const historyTableBody = document.querySelector("#history-table tbody");
+
+// Charge les données CSV
+async function loadCSV(file) {
+    const response = await fetch(file);
+    const text = await response.text();
+    return text.split('\n').map(line => line.trim()).filter(line => line);
 }
 
-// Dessiner la roue avec les noms
-function renderWheel() {
-  const canvas = document.getElementById("wheel");
-  const ctx = canvas.getContext("2d");
-  const segments = names.length;
-  const angle = 2 * Math.PI / segments;
-  const radius = canvas.width / 2;
+// Initialisation des données et démarrage
+async function initialize() {
+    namesList = await loadCSV("roue_listNames.csv");
+    spinSchedule = await loadCSV("roue_planning.csv");
 
-  // Dessiner chaque segment avec un nom
-  names.forEach((name, index) => {
-    const startAngle = index * angle;
-    const endAngle = (index + 1) * angle;
-    ctx.fillStyle = index % 2 === 0 ? "#FFDDC1" : "#FFC107"; // Couleurs alternées
-    ctx.beginPath();
-    ctx.arc(radius, radius, radius, startAngle, endAngle);
-    ctx.lineTo(radius, radius);
-    ctx.fill();
-    ctx.fillStyle = "black";
-    ctx.font = "16px Arial";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    ctx.fillText(name, radius + Math.cos(startAngle + angle / 2) * radius / 2, radius + Math.sin(startAngle + angle / 2) * radius / 2);
-  }
+    // Afficher la prochaine date et heure
+    updateNextSpinTime();
+    // Afficher l'historique des gagnants
+    loadHistory();
+    // Mettre à jour l'état du bouton (actif ou inactif)
+    updateSpinButtonState();
 }
 
-// Activer ou désactiver le bouton
-function updateButtonState() {
-  const currentTime = new Date();
-  const nextAvailable = getNextAvailableSlot(currentTime);
-  
-  if (nextAvailable) {
-    const remainingTime = calculateTimeDifference(currentTime, nextAvailable);
-    document.getElementById("countdown").innerText = `Prochain créneau: ${remainingTime} secondes`;
-    document.getElementById("spinButton").disabled = false;
-  } else {
-    document.getElementById("countdown").innerText = "Aucun créneau disponible aujourd'hui";
-    document.getElementById("spinButton").disabled = true;
-  }
+// Mettre à jour la date et l'heure du prochain tirage
+function updateNextSpinTime() {
+    const nextSpin = spinSchedule[0]; // Exemple : obtenir le prochain créneau
+    nextSpinTimeDisplay.textContent = nextSpin;
+    startCountdown(new Date(nextSpin));
 }
 
-// Fonction pour calculer la différence en secondes entre deux dates
-function calculateTimeDifference(currentTime, nextAvailable) {
-  return Math.floor((nextAvailable - currentTime) / 1000);
-}
-
-// Trouver le prochain créneau disponible
-function getNextAvailableSlot(currentTime) {
-  for (let i = 0; i < schedule.length; i++) {
-    const slot = new Date(`${schedule[i].date} ${schedule[i].time}`);
-    if (slot > currentTime && !schedule[i].winner) {
-      return slot;
-    }
-  }
-  return null;
-}
-
-// Faire tourner la roue
-function spinWheel() {
-  const winnerIndex = Math.floor(Math.random() * names.length);
-  const winner = names[winnerIndex];
-  
-  // Simuler l'animation de la roue
-  const wheel = document.getElementById("wheel");
-  let rotation = 0;
-  const spinInterval = setInterval(() => {
-    rotation += 10;
-    wheel.style.transform = `rotate(${rotation}deg)`;
-    if (rotation >= 360 * 3) {
-      clearInterval(spinInterval);
-      schedule.forEach(slot => {
-        if (!slot.winner) {
-          slot.winner = winner;
-          updateHistoryTable(slot);
+// Démarre un compte à rebours
+function startCountdown(targetTime) {
+    const interval = setInterval(() => {
+        const now = new Date();
+        const remainingTime = targetTime - now;
+        if (remainingTime <= 0) {
+            clearInterval(interval);
+            countdownDisplay.textContent = "Tirage maintenant !";
+            spinButton.disabled = false;
+        } else {
+            const hours = Math.floor(remainingTime / (1000 * 60 * 60));
+            const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+            countdownDisplay.textContent = `${hours}:${minutes}:${seconds}`;
         }
-      });
-      renderHistory();
+    }, 1000);
+}
+
+// Mise à jour de l'état du bouton de la roue
+function updateSpinButtonState() {
+    const now = new Date();
+    const nextSpin = new Date(spinSchedule[0]); // Exemple : prochain créneau
+    if (now < nextSpin) {
+        spinButton.disabled = true;
+    } else {
+        spinButton.disabled = false;
     }
-  }, 10);
-  
-  // Mettre à jour le CSV (via backend, ici simulation)
-  updateCSV(winner);
 }
 
-// Mettre à jour l'historique des gagnants
-function updateHistoryTable(slot) {
-  const tableBody = document.getElementById("history").querySelector("tbody");
-  const row = document.createElement("tr");
-  const date = new Date(`${slot.date} ${slot.time}`);
-  row.innerHTML = `
-    <td>${slot.date}</td>
-    <td>${slot.time}</td>
-    <td>${slot.winner}</td>
-  `;
-  tableBody.appendChild(row);
+// Fonction pour démarrer la roue et tirer un gagnant
+function spinWheel() {
+    const winner = namesList[Math.floor(Math.random() * namesList.length)];
+    addWinnerToHistory(winner);
+    updateHistoryTable();
+    saveWinnerToCSV(winner);
+    alert(`Le gagnant est : ${winner}`);
 }
 
-// Mettre à jour le fichier CSV sur le backend (simulation)
-function updateCSV(winner) {
-  // Simuler une requête pour enregistrer l'historique dans le fichier CSV
-  console.log(`Gagnant enregistré : ${winner}`);
+// Ajouter le gagnant à l'historique
+function addWinnerToHistory(winner) {
+    const now = new Date();
+    history.push({ date: now, winner });
 }
 
-// Mettre à jour l'historique
-function renderHistory() {
-  schedule.forEach(slot => {
-    if (slot.winner) {
-      updateHistoryTable(slot);
-    }
-  });
+// Mettre à jour le tableau de l'historique des gagnants
+function updateHistoryTable() {
+    historyTableBody.innerHTML = '';
+    history.forEach(entry => {
+        const row = document.createElement("tr");
+        const dateCell = document.createElement("td");
+        dateCell.textContent = entry.date.toLocaleString();
+        const winnerCell = document.createElement("td");
+        winnerCell.textContent = entry.winner;
+        row.appendChild(dateCell);
+        row.appendChild(winnerCell);
+        historyTableBody.appendChild(row);
+    });
 }
 
-// Charger les fichiers CSV au démarrage
-loadCSVFiles();
+// Sauvegarder le gagnant dans le CSV (simulé)
+function saveWinnerToCSV(winner) {
+    // Cette fonction enregistre les données dans un fichier CSV, mais cela nécessite un backend en Node.js ou une autre solution serveur.
+}
+
+// Initialiser les données au chargement de la page
+window.onload = initialize;
+
+// Ajouter un écouteur d'événements au bouton
+spinButton.addEventListener("click", spinWheel);
