@@ -6,21 +6,54 @@ const spinButton = document.getElementById("spin-button");
 const countdownDisplay = document.getElementById("countdown");
 const nextSpinTimeDisplay = document.getElementById("next-spin-time");
 const historyTableBody = document.querySelector("#history-table tbody");
+const wheelCanvas = document.getElementById("wheel");
+const wheelContext = wheelCanvas.getContext("2d");
 
 // Charge les données CSV
 async function loadCSV(file) {
-    const response = await fetch(file);
-    const text = await response.text();
-    const lines = text.split('\n').map(line => line.trim()).filter(line => line);
-
-    if (file.includes("roue_listNames.csv")) {
-        return lines.slice(1); // Ignore la première ligne ("name")
+    try {
+        const response = await fetch(file);
+        if (!response.ok) throw new Error(`Erreur lors du chargement du fichier : ${file}`);
+        const text = await response.text();
+        const lines = text.split('\n').map(line => line.trim()).filter(line => line);
+        return lines;
+    } catch (error) {
+        console.error(`Erreur lors du chargement de ${file}: `, error);
+        return [];
     }
+}
 
-    // Pour "roue_planning.csv", on doit séparer chaque ligne en colonnes
-    return lines.slice(1).map(line => {
-        const [date, startTime, endTime, winner] = line.split(',').map(item => item.trim());
-        return { date, startTime, endTime, winner: winner || null };
+// Dessiner la roue
+function drawWheel() {
+    const numSegments = namesList.length;
+    const radius = 200;
+    const centerX = wheelCanvas.width / 2;
+    const centerY = wheelCanvas.height / 2;
+    const angle = (2 * Math.PI) / numSegments;
+
+    // Effacer le canvas avant de redessiner
+    wheelContext.clearRect(0, 0, wheelCanvas.width, wheelCanvas.height);
+
+    // Dessiner chaque segment de la roue
+    namesList.forEach((name, index) => {
+        const startAngle = angle * index;
+        const endAngle = startAngle + angle;
+        wheelContext.fillStyle = index % 2 === 0 ? "#FFDDC1" : "#FFABAB"; // Alternance des couleurs
+        wheelContext.beginPath();
+        wheelContext.moveTo(centerX, centerY);
+        wheelContext.arc(centerX, centerY, radius, startAngle, endAngle);
+        wheelContext.lineTo(centerX, centerY);
+        wheelContext.fill();
+
+        // Ajouter le texte du nom au centre de chaque segment
+        const textAngle = startAngle + angle / 2;
+        const textX = centerX + Math.cos(textAngle) * (radius - 30);
+        const textY = centerY + Math.sin(textAngle) * (radius - 30);
+        wheelContext.fillStyle = "#000";
+        wheelContext.font = "16px Arial";
+        wheelContext.textAlign = "center";
+        wheelContext.textBaseline = "middle";
+        wheelContext.fillText(name, textX, textY);
     });
 }
 
@@ -28,6 +61,9 @@ async function loadCSV(file) {
 async function initialize() {
     namesList = await loadCSV("assets/roue_listNames.csv");
     spinSchedule = await loadCSV("assets/roue_planning.csv");
+
+    // Dessiner la roue dès que les noms sont chargés
+    drawWheel();
 
     // Afficher la prochaine date et heure de tirage
     updateNextSpinTime();
@@ -54,11 +90,11 @@ function getNextValidSpinTime() {
     for (const entry of spinSchedule) {
         const startDate = new Date(`${entry.date}T${entry.startTime}`);
         const endDate = new Date(`${entry.date}T${entry.endTime}`);
-        if (now >= startDate && now <= endDate && entry.winner === null) {
+        if (now >= startDate && now <= endDate && !entry.winner) {
             return entry;
         }
     }
-    return null; // Aucune session valide trouvée
+    return null;
 }
 
 // Démarre un compte à rebours jusqu'à la prochaine session de tirage
@@ -82,11 +118,11 @@ function startCountdown(targetTime) {
 // Mise à jour de l'état du bouton de la roue
 function updateSpinButtonState() {
     const now = new Date();
-    const nextSpin = getNextValidSpinTime(); // Prochain créneau valide
-    if (nextSpin && now >= new Date(`${nextSpin.date}T${nextSpin.startTime}`)) {
-        spinButton.disabled = false; // Activer le bouton si dans le créneau
+    const nextSpin = getNextValidSpinTime();
+    if (nextSpin && now < new Date(`${nextSpin.date}T${nextSpin.startTime}`)) {
+        spinButton.disabled = true;
     } else {
-        spinButton.disabled = true; // Désactiver sinon
+        spinButton.disabled = false;
     }
 }
 
