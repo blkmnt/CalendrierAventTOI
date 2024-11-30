@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendrier de l'Avent TOI - Spinning Wheel</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/papaparse/5.3.1/papaparse.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" href="assets/images/icon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
@@ -16,27 +14,36 @@
             </a>
         </div>
     </header>
-    <section class="content flex flex-col items-center p-6">
-        <div class="wheel-container relative mb-6">
-            <canvas id="wheel" width="500" height="500" class="rounded-full shadow-lg"></canvas>
-            <button id="spin-button" class="absolute inset-0 w-24 h-24 bg-blue-500 text-white font-bold rounded-full shadow hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed">
-                Spin
-            </button>
-            <div id="countdown" class="mt-4 text-lg font-semibold text-red-600"></div>
-        </div>
-        <div class="winner-history w-full max-w-2xl">
-            <h2 class="text-xl font-semibold mb-4">Historique des gagnants</h2>
-            <table id="history-table" class="table-auto w-full border-collapse border border-gray-300">
-                <thead class="bg-gray-200">
+
+    <section class="content">
+        <div class="container">
+            <div class="wheel-container">
+                <!-- Zone de la roue -->
+                <canvas id="wheel" width="500" height="500"></canvas>
+                
+                <!-- Bouton pour faire tourner la roue -->
+                <button id="spinButton" onclick="spinWheel()" disabled>Faire tourner la roue</button>
+            </div>
+
+            <!-- Compte à rebours pour savoir quand le bouton sera actif -->
+            <div id="countdown"></div>
+
+            <!-- Tableau de l'historique des gagnants -->
+            <table id="history">
+                <thead>
                     <tr>
-                        <th class="border border-gray-300 px-4 py-2">Date</th>
-                        <th class="border border-gray-300 px-4 py-2">Gagnant</th>
+                        <th>Date</th>
+                        <th>Heure</th>
+                        <th>Gagnant</th>
                     </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody>
+                    <!-- L'historique sera ajouté ici dynamiquement -->
+                </tbody>
             </table>
         </div>
     </section>
+
     <footer>
         <div class="footer-content">
             <p>© 2024 Calendrier de l'Avent TOI</p>
