@@ -430,6 +430,7 @@ input:checked + .slider:before {
     }
     .countdown-card {
     min-width: 3rem;
+    border-radius: 0.3rem;
     }
     
 @media (min-width: 769px) and (max-width: 1024px) {
