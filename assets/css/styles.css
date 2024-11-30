@@ -351,50 +351,42 @@ input:checked + .slider:before {
 
 /* Spinning Wheel */
 
+.container {
+  text-align: center;
+}
+
 .wheel-container {
-    position: relative;
-    margin: 20px 0;
+  position: relative;
 }
 
-.spin-button {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
+spin-button {
+  font-size: 18px;
+  padding: 10px 20px;
+  margin-top: 20px;
 }
 
-.spin-button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
+#countdown {
+  font-size: 20px;
+  margin-top: 20px;
 }
 
-#wheel {
-    border: 2px solid #333;
-    border-radius: 50%;
-    background: white;
+table {
+  margin-top: 30px;
+  width: 100%;
+  border-collapse: collapse;
 }
 
-.winner-history {
-    margin-top: 20px;
-    width: 80%;
+table, th, td {
+  border: 1px solid #ddd;
 }
 
-#history-table {
-    width: 100%;
-    border-collapse: collapse;
+th, td {
+  padding: 10px;
+  text-align: center;
 }
 
-#history-table th, #history-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: center;
+th {
+  background-color: #f1f1f1;
 }
 
 /* Responsive Design */
