@@ -351,29 +351,66 @@ input:checked + .slider:before {
 
 /* Spinning Wheel */
 
+.wheel-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  flex: 1;
+}
+
 .container {
   text-align: center;
+  width: 100%;
+  max-width: 600px;
 }
 
 .wheel-container {
   position: relative;
 }
 
-spin-button {
+canvas {
+  border-radius: 50%;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Bouton pour faire tourner la roue */
+.spinning-button {
   font-size: 18px;
   padding: 10px 20px;
   margin-top: 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
+.spinning-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.spinning-button:hover {
+  background-color: #45a049;
+}
+
+/* Affichage du compte à rebours */
 #countdown {
   font-size: 20px;
   margin-top: 20px;
+  font-weight: bold;
+  color: #d9534f;
 }
 
+/* Style du tableau historique */
 table {
   margin-top: 30px;
   width: 100%;
   border-collapse: collapse;
+  background-color: white;
 }
 
 table, th, td {
@@ -387,6 +424,12 @@ th, td {
 
 th {
   background-color: #f1f1f1;
+  font-size: 16px;
+}
+
+td {
+  font-size: 14px;
+  color: #555;
 }
 
 /* Responsive Design */
@@ -421,6 +464,24 @@ th {
     }
     p, .card p {
         font-size: 0.75rem;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    canvas {
+        width: 100%;
+        height: auto;
+    }
+
+    .spinning-button {
+        width: 100%;
+        padding: 15px;
+      }
+
+    table {
+        font-size: 14px;
     }
 
 @media (min-width: 769px) and (max-width: 1024px) {
