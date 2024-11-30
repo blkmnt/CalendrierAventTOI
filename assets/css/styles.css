@@ -349,6 +349,54 @@ input:checked + .slider:before {
     transform: translateX(22px);
 }
 
+/* Spinning Wheel */
+
+.wheel-container {
+    position: relative;
+    margin: 20px 0;
+}
+
+.spin-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.spin-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+#wheel {
+    border: 2px solid #333;
+    border-radius: 50%;
+    background: white;
+}
+
+.winner-history {
+    margin-top: 20px;
+    width: 80%;
+}
+
+#history-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#history-table th, #history-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .content {
