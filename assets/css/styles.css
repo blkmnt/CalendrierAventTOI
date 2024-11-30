@@ -349,39 +349,7 @@ input:checked + .slider:before {
     transform: translateX(22px);
 }
 
-/* Spinning Wheel */
 
-#wheel-container {
-    position: relative;
-    margin-bottom: 30px;
-}
-
-#spin-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-#next-spin-container {
-    margin-top: 30px;
-}
-
-#history-table {
-    margin-top: 20px;
-    border-collapse: collapse;
-    width: 100%;
-}
-
-#history-table th, #history-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: center;
-}
-
-#history-table th {
-    background-color: #f2f2f2;
-}
 
 /* Responsive Design */
 @media (max-width: 768px) {
