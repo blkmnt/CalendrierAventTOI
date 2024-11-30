@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendrier de l'Avent TOI</title>
+    <link rel="icon" href="assets/images/icon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="#">
+            </a>
+        </div>
+    </header>
+    <div class="wheel-container">
+        <canvas id="wheel" width="500" height="500"></canvas>
+        <button id="spin-button" class="spin-button" disabled>Spin</button>
+        <div id="countdown"></div>
+    </div>
+    <div class="winner-history">
+        <h2>Winner History</h2>
+        <table id="history-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Winner</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <footer>
+        <div class="footer-content">
+        <p>© 2024 Calendrier de l'Avent TOI</p>
+        </div>
+    </footer>
+    <script src="assets/js/app.js"></script>
+</body>
+</html>
