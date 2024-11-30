@@ -15,14 +15,14 @@
         </div>
     </header>
 
-    <section class="content">
+    <section class="wheel-content">
         <div class="container">
             <div class="wheel-container">
                 <!-- Zone de la roue -->
                 <canvas id="wheel" width="500" height="500"></canvas>
                 
                 <!-- Bouton pour faire tourner la roue -->
-                <button id="spinButton" onclick="spinWheel()" disabled>Faire tourner la roue</button>
+                <spinning-button id="spinButton" onclick="spinWheel()" disabled>Faire tourner la roue</spinning-button>
             </div>
 
             <!-- Compte à rebours pour savoir quand le bouton sera actif -->
