@@ -355,8 +355,6 @@ input:checked + .slider:before {
     align-items: center; /* Aligne les éléments sur une ligne */
     justify-content: center; /* Centre les éléments horizontalement */
     flex-wrap: wrap; /* Permet aux éléments de se placer sur plusieurs lignes en mobile */
-    gap: 20px; /* Ajoute de l'espace entre le texte et le compte à rebours */
-    margin-top: 10px;
 }
 
 /* Texte à gauche du compte à rebours */
@@ -387,6 +385,7 @@ input:checked + .slider:before {
     font-size: 0.5rem;
     font-weight: bold;
     min-width: 4rem;  /* Largeur minimale pour la carte */
+    text-transform: uppercase;
 }
 
 /* Optionnel : pour rendre les chiffres plus visibles */
@@ -398,6 +397,10 @@ input:checked + .slider:before {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    
+    header {
+        height: auto;
+    }
     .content {
         grid-template-columns: 1fr;
         padding: 0rem 2rem 2rem 2rem;
