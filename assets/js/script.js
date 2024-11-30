@@ -202,3 +202,44 @@ function togglePastCards() {
 document.addEventListener('DOMContentLoaded', function () {
     togglePastCards(); // Initialisation de la gestion du toggle
 });
+
+// Fonction pour démarrer le compte à rebours
+function startChristmasCountdown() {
+    const daysElement = document.getElementById("days");
+    const hoursElement = document.getElementById("hours");
+    const minutesElement = document.getElementById("minutes");
+    const secondsElement = document.getElementById("seconds");
+
+    // Date cible (25 décembre de cette année)
+    const targetDate = new Date("December 25, 2024 00:00:00").getTime();
+
+    // Mise à jour du compte à rebours toutes les secondes
+    const interval = setInterval(() => {
+        const now = new Date().getTime();
+        const timeLeft = targetDate - now;
+
+        if (timeLeft <= 0) {
+            clearInterval(interval);
+            daysElement.textContent = "00";
+            hoursElement.textContent = "00";
+            minutesElement.textContent = "00";
+            secondsElement.textContent = "00";
+            document.getElementById("countdown-timer").innerHTML = "Joyeux Noël !";
+        } else {
+            // Calcul du temps restant en jours, heures, minutes et secondes
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            // Affichage du compte à rebours
+            daysElement.textContent = days < 10 ? "0" + days : days;
+            hoursElement.textContent = hours < 10 ? "0" + hours : hours;
+            minutesElement.textContent = minutes < 10 ? "0" + minutes : minutes;
+            secondsElement.textContent = seconds < 10 ? "0" + seconds : seconds;
+        }
+    }, 1000);
+}
+
+// Démarrer le compte à rebours dès que la page est chargée
+window.onload = startChristmasCountdown;
