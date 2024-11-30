@@ -396,10 +396,7 @@ input:checked + .slider:before {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    
-    header {
-        height: auto;
-    }
+
     .content {
         grid-template-columns: 1fr;
         padding: 0rem 2rem 2rem 2rem;
@@ -431,7 +428,10 @@ input:checked + .slider:before {
     p, .card p {
         font-size: 0.75rem;
     }
-
+    .countdown-card {
+    min-width: 3rem;
+    }
+    
 @media (min-width: 769px) and (max-width: 1024px) {
     .content {
         grid-template-columns: repeat(2, 1fr);
