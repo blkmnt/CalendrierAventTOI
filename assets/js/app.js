@@ -11,7 +11,17 @@ const historyTableBody = document.querySelector("#history-table tbody");
 async function loadCSV(file) {
     const response = await fetch(file);
     const text = await response.text();
-    return text.split('\n').map(line => line.trim()).filter(line => line);
+    const lines = text.split('\n').map(line => line.trim()).filter(line => line);
+
+    if (file.includes("roue_listNames.csv")) {
+        return lines.slice(1); // Ignore la première ligne ("name")
+    }
+
+    // Pour "roue_planning.csv", on doit séparer chaque ligne en colonnes
+    return lines.slice(1).map(line => {
+        const [date, startTime, endTime, winner] = line.split(',').map(item => item.trim());
+        return { date, startTime, endTime, winner: winner || null };
+    });
 }
 
 // Initialisation des données et démarrage
@@ -19,7 +29,7 @@ async function initialize() {
     namesList = await loadCSV("assets/roue_listNames.csv");
     spinSchedule = await loadCSV("assets/roue_planning.csv");
 
-    // Afficher la prochaine date et heure
+    // Afficher la prochaine date et heure de tirage
     updateNextSpinTime();
     // Afficher l'historique des gagnants
     loadHistory();
@@ -29,12 +39,29 @@ async function initialize() {
 
 // Mettre à jour la date et l'heure du prochain tirage
 function updateNextSpinTime() {
-    const nextSpin = spinSchedule[0]; // Exemple : obtenir le prochain créneau
-    nextSpinTimeDisplay.textContent = nextSpin;
-    startCountdown(new Date(nextSpin));
+    const nextSpin = getNextValidSpinTime();
+    if (nextSpin) {
+        nextSpinTimeDisplay.textContent = `${nextSpin.date} ${nextSpin.startTime}`;
+        startCountdown(new Date(`${nextSpin.date}T${nextSpin.startTime}`));
+    } else {
+        nextSpinTimeDisplay.textContent = "Aucun tirage programmé";
+    }
 }
 
-// Démarre un compte à rebours
+// Trouver le prochain créneau valide dans la planification
+function getNextValidSpinTime() {
+    const now = new Date();
+    for (const entry of spinSchedule) {
+        const startDate = new Date(`${entry.date}T${entry.startTime}`);
+        const endDate = new Date(`${entry.date}T${entry.endTime}`);
+        if (now >= startDate && now <= endDate && entry.winner === null) {
+            return entry;
+        }
+    }
+    return null; // Aucune session valide trouvée
+}
+
+// Démarre un compte à rebours jusqu'à la prochaine session de tirage
 function startCountdown(targetTime) {
     const interval = setInterval(() => {
         const now = new Date();
@@ -55,11 +82,11 @@ function startCountdown(targetTime) {
 // Mise à jour de l'état du bouton de la roue
 function updateSpinButtonState() {
     const now = new Date();
-    const nextSpin = new Date(spinSchedule[0]); // Exemple : prochain créneau
-    if (now < nextSpin) {
-        spinButton.disabled = true;
+    const nextSpin = getNextValidSpinTime(); // Prochain créneau valide
+    if (nextSpin && now >= new Date(`${nextSpin.date}T${nextSpin.startTime}`)) {
+        spinButton.disabled = false; // Activer le bouton si dans le créneau
     } else {
-        spinButton.disabled = false;
+        spinButton.disabled = true; // Désactiver sinon
     }
 }
 
