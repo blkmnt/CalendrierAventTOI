@@ -14,36 +14,30 @@
             </a>
         </div>
     </header>
-
-    <section class="wheel-content">
-        <div class="container">
-            <div class="wheel-container">
-                <!-- Zone de la roue -->
-                <canvas id="wheel" width="500" height="500"></canvas>
-                
-                <!-- Bouton pour faire tourner la roue -->
-                <spinning-button id="spinButton" onclick="spinWheel()" disabled>Faire tourner la roue</spinning-button>
-            </div>
-
-            <!-- Compte à rebours pour savoir quand le bouton sera actif -->
-            <div id="countdown"></div>
-
-            <!-- Tableau de l'historique des gagnants -->
-            <table id="history">
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Heure</th>
-                        <th>Gagnant</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- L'historique sera ajouté ici dynamiquement -->
-                </tbody>
-            </table>
+    <section class="content">
+            <div id="wheel-container">
+            <canvas id="wheel" width="500" height="500"></canvas>
+            <button id="spin-button" disabled>Faire tourner la roue</button>
         </div>
+    
+        <div id="next-spin-container">
+            <p>Prochain tirage : <span id="next-spin-time"></span></p>
+            <div id="countdown"></div>
+        </div>
+    
+        <h3>Historique des gagnants</h3>
+        <table id="history-table">
+            <thead>
+                <tr>
+                    <th>Date et Heure</th>
+                    <th>Nom du Gagnant</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Les gagnants apparaîtront ici -->
+            </tbody>
+        </table>
     </section>
-
     <footer>
         <div class="footer-content">
             <p>© 2024 Calendrier de l'Avent TOI</p>
