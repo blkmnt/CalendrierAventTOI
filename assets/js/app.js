@@ -16,8 +16,8 @@ async function loadCSV(file) {
 
 // Initialisation des données et démarrage
 async function initialize() {
-    namesList = await loadCSV("roue_listNames.csv");
-    spinSchedule = await loadCSV("roue_planning.csv");
+    namesList = await loadCSV("assets/roue_listNames.csv");
+    spinSchedule = await loadCSV("assets/roue_planning.csv");
 
     // Afficher la prochaine date et heure
     updateNextSpinTime();
