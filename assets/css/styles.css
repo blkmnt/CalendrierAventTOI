@@ -349,6 +349,34 @@ input:checked + .slider:before {
     transform: translateX(22px);
 }
 
+/* Conteneur global du compte à rebours */
+.countdown-container {
+    display: flex;
+    justify-content: space-around; /* Espace entre les cartes */
+    align-items: center;
+    font-size: 18px;
+    color: white;
+    margin-top: 10px;
+}
+
+/* Carte pour chaque unité de temps */
+.countdown-card {
+    background-color: #FF0000; /* Fond rouge */
+    color: white;  /* Texte en blanc */
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    min-width: 80px;  /* Largeur minimale pour la carte */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Ombre pour un effet de carte */
+}
+
+/* Optionnel : pour rendre les chiffres plus visibles */
+.countdown-card span {
+    font-size: 30px; /* Taille plus grande pour les chiffres */
+    display: block; /* Sépare les chiffres du texte */
+}
 
 
 /* Responsive Design */
