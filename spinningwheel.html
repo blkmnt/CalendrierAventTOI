@@ -9,13 +9,14 @@
     <link rel="icon" href="assets/images/icon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
-<body class="bg-gray-100 flex flex-col min-h-screen">
-    <header class="bg-red-600 text-white py-4">
-        <div class="header-content text-center">
-            <a href="#" class="text-2xl font-bold">Calendrier de l'Avent TOI</a>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="#">
+            </a>
         </div>
     </header>
-    <main class="content flex-grow flex flex-col items-center p-6">
+    <section class="content flex flex-col items-center p-6">
         <div class="wheel-container relative mb-6">
             <canvas id="wheel" width="500" height="500" class="rounded-full shadow-lg"></canvas>
             <button id="spin-button" class="absolute inset-0 w-24 h-24 bg-blue-500 text-white font-bold rounded-full shadow hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed">
@@ -35,11 +36,12 @@
                 <tbody></tbody>
             </table>
         </div>
-    </main>
-    <footer class="footer-content bg-gray-800 text-white py-4 text-center">
-        <p>© 2024 Calendrier de l'Avent TOI</p>
+    </section>
+    <footer>
+        <div class="footer-content">
+            <p>© 2024 Calendrier de l'Avent TOI</p>
+        </div>
     </footer>
     <script src="assets/js/app.js"></script>
 </body>
 </html>
-
